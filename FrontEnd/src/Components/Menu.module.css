@@ -1,0 +1,122 @@
+.container {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container h1 {
+    text-align: center;
+    color: white;
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+.endpoints {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.professores {
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: auto;
+    background-color: limegreen;
+    padding: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.professores:hover {
+    background-color: magenta;
+}
+
+.professores img {
+    width: 128px;
+    height: 128px;
+}
+
+.professores p {
+    margin-left: 30px;
+    margin-right: 20px;
+    font-size: 25px;
+}
+
+.gestores {
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: auto;
+    background-color: limegreen;
+    padding: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.gestores:hover {
+    background-color: magenta;
+}
+
+.gestores img {
+    width: 128px;
+    height: 128px;
+}
+
+.gestores p {
+    margin-left: 30px;
+    margin-right: 20px;
+    font-size: 25px;
+}
+
+.disciplinas {
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: auto;
+    background-color: limegreen;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.disciplinas img {
+    width: 128px;
+    height: 128px;
+}
+
+.disciplinas p {
+    margin-left: 30px;
+    margin-right: 20px;
+    font-size: 25px;
+}
+
+.ambientes {
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: auto;
+    background-color: limegreen;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.ambientes img {
+    width: 128px;
+    height: 128px;
+}
+
+.ambientes p {
+    margin-left: 30px;
+    margin-right: 20px;
+    font-size: 25px;
+}
