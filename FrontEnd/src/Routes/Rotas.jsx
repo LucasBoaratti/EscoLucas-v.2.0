@@ -10,6 +10,8 @@ import { EditarProfessor } from "../Pages/EditarProfessor";
 import { DisciplinaCRUD } from "../Pages/DisciplinaCRUD";
 import { CriarDisciplina } from "../Pages/CriarDisciplina";
 import { EditarDisciplina } from "../Pages/EditarDisciplina";
+import { AmbienteCRUD } from "../Pages/AmbienteCRUD";
+import { CriarAmbiente } from "../Pages/CriarAmbiente";
 
 export function Rotas() {
     return (
@@ -50,6 +52,14 @@ export function Rotas() {
 
             <Route path="/editarDisciplina" element={<Index/>}>
                 <Route index element={<EditarDisciplina/>}/>
+            </Route>
+
+            <Route path="/ambienteCRUD" element={<Index/>}>
+                <Route index element={<AmbienteCRUD/>}/>
+            </Route>
+
+            <Route path="/criarAmbiente" element={<Index/>}>
+                <Route index element={<CriarAmbiente/>}/>
             </Route>
         </Routes>
     )

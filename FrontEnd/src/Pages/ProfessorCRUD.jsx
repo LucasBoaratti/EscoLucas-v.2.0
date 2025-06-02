@@ -57,6 +57,7 @@ export function ProfessorCRUD() {
             <table className={css.tabela}>
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>NI</th>
                         <th>Nome</th>
                         <th>E-Mail</th>
@@ -71,6 +72,7 @@ export function ProfessorCRUD() {
                     {/* "Duplicando" a lista de professor com o map() para exibir os dados dos professores */}
                     {professor.map((professor) => (
                         <tr key={professor.id}>
+                            <td>{professor.id}</td>
                             <td>{professor.ni}</td>
                             <td>{professor.nome}</td>
                             <td>{professor.email}</td>

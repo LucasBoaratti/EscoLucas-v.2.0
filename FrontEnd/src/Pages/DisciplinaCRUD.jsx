@@ -35,6 +35,7 @@ export function DisciplinaCRUD() {
 
         ObterDisciplinas();
     }, [])
+    
     return (
         <main className={css.container}>
             <h1>Conheça as disciplinas existentes na EscoLucas</h1>

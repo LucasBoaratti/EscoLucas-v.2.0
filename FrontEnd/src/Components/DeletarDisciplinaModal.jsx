@@ -1,4 +1,5 @@
 import css from "./DeletarDisciplinaModal.module.css";
+import axios from "axios";
 
 export function DeletarDisciplinaModal({ openModal, closeModal, atualizarTabelaDisciplina }) {
     if (!openModal) {

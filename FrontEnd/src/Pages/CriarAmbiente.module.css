@@ -1,14 +1,14 @@
-.formularioCreate {
+.container {
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
-    height: 1100px;
+    height: 900px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.containerFormulario {
+.formulario {
     background-color: #fa198b;
     padding: 20px;
     border-radius: 25px;
@@ -16,37 +16,45 @@
     overflow: auto;
 }
 
-.tituloFormulario {
+.formulario h1 {
     margin-bottom: 20px;
     color: white;
     text-align: center;
 }
 
-.formularioPOST input[type="text"] {
+.dadosFormulario input[type="text"] {
     margin: 10px 0;
     border-radius: 15px;
     border: none;
 }
 
-.formularioPOST input[type="email"] {
+.dadosFormulario input[type="email"] {
     margin: 10px 0;
     border-radius: 15px;
     border: none;
 }
 
-.formularioPOST input[type="number"] {
+.dadosFormulario input[type="number"] {
     margin: 10px 0;
     border-radius: 15px;
     border: none;
 }
 
-.formularioPOST input[type="date"] {
+.dadosFormulario input[type="date"] {
     margin: 10px 0;
     border-radius: 15px;
     border: none;
 }
 
-.botoesFormulario {
+.escolhas {
+    border-radius: 20px;
+    height: 30px;
+    font-size: 16px;
+    width: 80px;
+    margin: 20px 0;
+}
+
+.botoes {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,7 +62,7 @@
     margin-top: 30px;
 }
 
-.botoesFormulario button {
+.botoes button {
     border: none;
     border-radius: 20px;
     padding: 15px;
@@ -62,6 +70,6 @@
     cursor: pointer;
 }
 
-.botoesFormulario button:hover {
+.botoes button:hover {
     background-color: #00FA50;
 }

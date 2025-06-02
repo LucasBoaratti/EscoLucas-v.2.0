@@ -68,15 +68,6 @@ class AmbientesLCAPIView(ListCreateAPIView): #Classe que lista e cria ambientes
 
     permission_classes = [IsGestor]
 
-    def perform_create(self, serializer):
-        dataInicio = serializer.validated_data["dataInicio"] 
-        dataTermino = serializer.validated_data["dataTermino"]
-
-        if dataInicio < date.today() and dataTermino < date.today():
-            raise serializers.ValidationError("Data de reserva inválida.")
-        
-        serializer.save()
-
 class AmbientesRUDAPIView(RetrieveUpdateDestroyAPIView): #Classe que atualiza, lista e exclui ambientes
     queryset = Ambientes.objects.all()
 
@@ -85,15 +76,6 @@ class AmbientesRUDAPIView(RetrieveUpdateDestroyAPIView): #Classe que atualiza, l
     permission_classes = [IsGestor]
 
     lookup_field = "pk"
-
-    def perform_create(self, serializer):
-        dataInicio = serializer.validated_data["dataInicio"] 
-        dataTermino = serializer.validated_data["dataTermino"]
-
-        if dataInicio < date.today() and dataTermino < date.today():
-            raise serializers.ValidationError("Data de reserva inválida.")
-        
-        serializer.save()
 
 class BuscarReservaProfessores(ListAPIView): #Classe que lista o ambiente que os professores reservaram
     permission_classes = [IsAuthenticated] #Apenas usuários autenticados podem acessar essa rota
