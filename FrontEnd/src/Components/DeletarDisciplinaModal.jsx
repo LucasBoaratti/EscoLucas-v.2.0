@@ -34,7 +34,7 @@ export function DeletarDisciplinaModal({ openModal, closeModal, atualizarTabelaD
                 <h1>Tem certeza que deseja deletar essa disciplina?</h1>
                 <div className={css.botoes}>
                     <button type="submit" onClick={DeletarDisciplinaDELETE}>Sim</button>
-                    <button type="button">Não</button>
+                    <button type="button" onClick={closeModal}>Não</button>
                 </div>
             </div>
         </div>

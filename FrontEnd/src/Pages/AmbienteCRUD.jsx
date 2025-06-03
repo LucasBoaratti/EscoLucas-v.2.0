@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import css from "./AmbienteCRUD.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { DeletarAmbienteModal } from "../Components/DeletarAmbienteModal";
 
 export function AmbienteCRUD() {
     const [ambiente, setAmbiente] = useState([]);
+    const [deletarAmbiente, setDeletarAmbiente] = useState(false);
 
     const navigate = useNavigate();
 
@@ -57,6 +59,7 @@ export function AmbienteCRUD() {
                         <th>Período</th>
                         <th>Professor representante</th>
                         <th>Disciplina associada</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,6 +72,22 @@ export function AmbienteCRUD() {
                             <td>{ambiente.periodo}</td>
                             <td>{ambiente.professorRepresentante}</td>
                             <td>{ambiente.disciplinaAssociada}</td>
+                            <td>
+                                <i class="bi bi-pencil-square" style={{ cursor:"pointer" }} onClick={() => {
+                                    localStorage.setItem("id", ambiente.id);
+                                    navigate("/editarAmbiente");
+                                }}>
+                                </i>
+                                <i class="bi bi-trash" style={{ cursor:"pointer"} } onClick={() => {
+                                    localStorage.setItem("id", ambiente.id);
+                                    setDeletarAmbiente(true);
+                                }}>
+                                </i>
+                                <DeletarAmbienteModal openModal={deletarAmbiente} closeModal={() =>  
+                                    setDeletarAmbiente(false)} 
+                                    atualizarTabelaAmbiente={ObterAmbientes}
+                                />
+                            </td>
                         </tr>
                     ))}
                 </tbody>

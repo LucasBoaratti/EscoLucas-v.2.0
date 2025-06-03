@@ -87,7 +87,7 @@ export function CriarAmbiente() {
                     {errors.dataInicio && <p>{errors.dataInicio.message}</p>}
 
                     <label htmlFor="dataTermino">Data de término:</label> <br />
-                    <input type="date" name="dataTermino" id="dataTermino" {...register("dateTermino")}/> <br />
+                    <input type="date" name="dataTermino" id="dataTermino" {...register("dataTermino")}/> <br />
                     {errors.dataInicio && <p>{errors.dateTermino.message}</p>}
 
                     <label htmlFor="periodo">Período:</label>
