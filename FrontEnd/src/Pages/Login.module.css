@@ -61,3 +61,7 @@ input {
     border-radius: 15px;
     cursor: pointer;
 }
+
+.botao:hover {
+    background-color: #FF6B3D;
+}

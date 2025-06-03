@@ -46,8 +46,12 @@ export function Professor_Endpoints() {
                         <img src={Lupa_Disciplina} alt="Lupa com uma sala ao fundo." />
                         <p>Verificar disciplina</p>
                     </div>
-                </div>    
-            </div> 
+                </div>  
+                <button type="button" onClick={() => navigate("/inicial")} className={css.botaoVoltar}>
+                    <i class="bi bi-arrow-left"></i>
+                    <p>Voltar</p>
+                </button>  
+            </div>
         </main>
     )
 }

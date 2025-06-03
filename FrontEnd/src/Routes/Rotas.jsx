@@ -13,6 +13,9 @@ import { EditarDisciplina } from "../Pages/EditarDisciplina";
 import { AmbienteCRUD } from "../Pages/AmbienteCRUD";
 import { CriarAmbiente } from "../Pages/CriarAmbiente";
 import { EditarAmbiente } from "../Pages/EditarAmbiente";
+import { VerificarSala } from "../Pages/VerificarSala";
+import { VerificarDisciplina } from "../Pages/VerificarDisciplina";
+import { Permissao } from "../Components/Permissao";
 
 export function Rotas() {
     return (
@@ -28,43 +31,71 @@ export function Rotas() {
             </Route>
 
             <Route path="/gestor" element={<Index/>}>
-                <Route index element={<Gestor_Endpoints/>}/>
+                <Route index element={<Permissao>
+                    <Gestor_Endpoints/>
+                </Permissao>}/>
             </Route>
 
             <Route path="/professorCRUD" element={<Index/>}>
-                <Route index element={<ProfessorCRUD/>}/>
+                <Route index element={<Permissao>
+                    <ProfessorCRUD/>
+                </Permissao>}/>
             </Route>
 
             <Route path="/criarProfessor" element={<Index/>}>
-                <Route index element={<CriarProfessor/>}/>
+                <Route index element={<Permissao>
+                    <CriarProfessor/>
+                </Permissao>}/>
             </Route>
 
             <Route path="/editarProfessor" element={<Index/>}>
-                <Route index element={<EditarProfessor/>}/>
+                <Route index element={<Permissao>
+                    <EditarProfessor/>
+                </Permissao>}/>
             </Route>
 
             <Route path="/disciplinaCRUD" element={<Index/>}>
-                <Route index element={<DisciplinaCRUD/>}/>
+                <Route index element={<Permissao>
+                    <DisciplinaCRUD/>
+                </Permissao>}/>
             </Route>
 
             <Route path="/criarDisciplina" element={<Index/>}>
-                <Route index element={<CriarDisciplina/>}/>
+                <Route index element={<Permissao>
+                    <CriarDisciplina/>
+                </Permissao>}/>
             </Route>
 
             <Route path="/editarDisciplina" element={<Index/>}>
-                <Route index element={<EditarDisciplina/>}/>
+                <Route index element={<Permissao>
+                    <EditarDisciplina/>
+                </Permissao>}/>
             </Route>
 
             <Route path="/ambienteCRUD" element={<Index/>}>
-                <Route index element={<AmbienteCRUD/>}/>
+                <Route index element={<Permissao>
+                    <AmbienteCRUD/>
+                </Permissao>}/>
             </Route>
 
             <Route path="/criarAmbiente" element={<Index/>}>
-                <Route index element={<CriarAmbiente/>}/>
+                <Route index element={<Permissao>
+                    <CriarAmbiente/>
+                </Permissao>}/>
             </Route>
 
             <Route path="/editarAmbiente" element={<Index/>}>
-                <Route index element={<EditarAmbiente/>}/>
+                <Route index element={<Permissao>
+                    <EditarAmbiente/>
+                </Permissao>}/>
+            </Route>
+
+            <Route path="/buscarSala" element={<Index/>}>
+                <Route index element={<VerificarSala/>}/>
+            </Route>
+
+            <Route path="/buscarDisciplina" element={<Index/>}>
+                <Route index element={<VerificarDisciplina/>}/>
             </Route>
         </Routes>
     )

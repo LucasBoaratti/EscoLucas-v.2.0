@@ -106,3 +106,22 @@
     font-size: 25px;
     text-align: center;
 }
+
+.botaoVoltar {
+    display: flex;
+    gap: 5px;
+    padding: 10px;
+    background-color: #00ff91;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.botaoVoltar i {
+    font-size: 20px;
+}
+
+.botaoVoltar:hover {
+    background-color: #e5ec09;
+}

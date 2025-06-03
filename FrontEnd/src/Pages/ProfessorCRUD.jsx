@@ -22,6 +22,8 @@ export function ProfessorCRUD() {
                 
             console.log("Dados dos professores: ", response.data);  
 
+            localStorage.setItem("nomeProfessor", response.data[0].nome); //Salvando o nome do professor logado para usar em filtragens
+
             setProfessor(response.data); //Armazenando os dados do professor para exibi-los na tabela
         }
 

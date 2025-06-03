@@ -52,6 +52,10 @@ export function Gestor_Endpoints() {
                         <p>Ambientes</p>
                     </div>
                 </div>
+                <button type="button" className={css.botaoVoltar} onClick={() => navigate("/inicial")}>
+                    <i class="bi bi-arrow-left"></i>
+                    <p>Voltar</p>
+                </button>
             </div>
         </main>
     )
