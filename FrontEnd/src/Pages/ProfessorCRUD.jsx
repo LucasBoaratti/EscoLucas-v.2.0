@@ -21,9 +21,9 @@ export function ProfessorCRUD() {
                 },
             });
 
-            localStorage.setItem("nomeProfessor", response.data[0].nome); //Salvando o nome do professor logado para usar em filtragens
-
             setProfessor(response.data); //Armazenando os dados do professor para exibi-los na tabela
+
+            localStorage.setItem("nomeProfessor", response.data[0].nome); //Salvando o nome do professor logado para usar em filtragens
         }
 
         catch(error) {
@@ -91,8 +91,9 @@ export function ProfessorCRUD() {
                                 }}>
                                 </i>
                                 {/* Depois de excluir um professor, a função ObterDadosProfessor é chamada para atualizar a tabela */}
-                                <DeletarProfessorModal openModal={deletarProfessor} closeModal={() => setDeletarProfessor(false)} 
-                                atualizarTabelaProfessores={ObterDadosProfessor}
+                                <DeletarProfessorModal openModal={deletarProfessor} closeModal={() => 
+                                    setDeletarProfessor(false)} 
+                                    atualizarTabelaProfessores={ObterDadosProfessor}
                                 />
                             </td>
                         </tr>

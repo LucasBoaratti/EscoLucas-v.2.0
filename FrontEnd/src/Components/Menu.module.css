@@ -120,3 +120,71 @@
     margin-right: 20px;
     font-size: 25px;
 }
+
+.missao {
+    background-color: limegreen;
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 20px;
+    width: 1000px;
+    height: auto;
+    border: none;
+    border-radius: 25px;
+    margin-bottom: 40px;
+}
+
+.missao h2 {
+    text-align: center;
+}
+
+.missao p {
+    font-size: 16px;
+    text-align: justify;
+}
+
+.tituloMissao {
+    margin-bottom: 20px;
+    color: black;
+}
+
+.paragrafoMissao {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.depoimentos h2 {
+    margin-bottom: 20px;
+}
+
+.fernanda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: mediumorchid;
+    border-radius: 20px;
+    padding: 10px;
+}   
+
+.fernanda p {
+    font-size: 20px;
+    padding-left: 20px;
+    width: 500px;
+    text-align: justify;
+}
+
+.marcia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0BA7FF;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 30px;
+}   
+
+.marcia p {
+    font-size: 20px;
+    padding-right: 20px;
+    width: 500px;
+    text-align: justify;
+}

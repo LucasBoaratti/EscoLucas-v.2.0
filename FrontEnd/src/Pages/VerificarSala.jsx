@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export function VerificarSala() {
     const [buscarAmbiente, setBuscarAmbiente] = useState([]); //Armazenando as disciplinas recuperadas na API
 
-    const nome = localStorage.getItem("nomeProfessor"); //Buscando o nome do professor salvo no login
+    const nome = localStorage.getItem("username"); //Buscando o nome do professor salvo no login
 
     const navigate = useNavigate();
 

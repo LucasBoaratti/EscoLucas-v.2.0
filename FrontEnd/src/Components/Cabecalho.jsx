@@ -14,8 +14,6 @@ export function Cabecalho() {
                 <nav className={css.navegacao}>
                     <ul>
                         <li onClick={() => navigate("/inicial")} className={css.login}>Home</li>
-                        <li>Missão</li>
-                        <li>Visão</li>
                         <li onClick={() => navigate("/")} className={css.login}>Login</li>
                     </ul>
                 </nav>

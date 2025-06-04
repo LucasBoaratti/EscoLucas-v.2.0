@@ -92,7 +92,7 @@ export function CriarAmbiente() {
 
                     <label htmlFor="dataTermino">Data de término:</label> <br />
                     <input type="date" name="dataTermino" id="dataTermino" {...register("dataTermino")}/> <br />
-                    {errors.dataInicio && <p>{errors.dateTermino.message}</p>}
+                    {errors.dataInicio && <p>{errors.dataTermino.message}</p>}  
 
                     <label htmlFor="periodo">Período:</label>
                     <select className={css.escolhas} {...register("periodo")}>
