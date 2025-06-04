@@ -4,7 +4,8 @@ import { Menu } from "./Menu";
 export function Conteudo() {
     return (
         <main className={css.container}>
-            <Menu/>
+            {/* Renderizando o componente Menu como conteúdo principal */}
+            <Menu/> 
         </main>
     )
 }

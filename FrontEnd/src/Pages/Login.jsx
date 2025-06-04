@@ -10,8 +10,7 @@ const schemaLogin = z.object({
         .min(1, 'Informe seu nome, por favor.')
         .max(25, 'Informe até 25 caracteres, por favor.'),
     password: z.string()
-        .min(8, 'Informe no mínimo 8 dígitos para a senha, por favor.')
-        .max(15, 'Informe no máximo 15 caracteres, por favor.'),
+        .min(8, 'Informe no mínimo 8 dígitos para a senha, por favor.'),
 });
 
 export function Login() {
@@ -26,18 +25,16 @@ export function Login() {
     });
 
     async function ObterDados(data) {
-        console.log(`Dados: ${data}`);
-
         try {
-            const response = await axios.post('http://127.0.0.1:8000/escolucas/login/', {
-                username: data.username, 
-                password: data.password
-            });
+            const response = await axios.post('http://127.0.0.1:8000/escolucas/login/', { //Realizando uma requisição POST na API
+                username: data.username, //Incluindo o nome do usuário na requisição
+                password: data.password //Incluindo a senha do usuário na requisição
+            }); 
 
             const { access, refresh, usuario } = response.data;
-            console.log(response.data);
 
-            localStorage.setItem('access_token', access);
+            //Salvando o token, refresh_token, id, nome e senha do usuário 
+            localStorage.setItem('access_token', access); 
             localStorage.setItem('refresh_token', refresh);
             localStorage.setItem('user_id', usuario.id);
             localStorage.setItem('username', usuario.username);
@@ -58,14 +55,17 @@ export function Login() {
     return (
         <main className={css.loginForm}>
             <div className={css.centralizarForm}>
+                {/* Aqui, o formulário usa o handleSubmit para validar os dados antes de enviá-los */}
                 <form onSubmit={handleSubmit(ObterDados)}>
                     <h2 className={css.titulo}>Seja bem-vindo(a) à escoLucas! faça seu login agora :D</h2>
 
                     <label>Nome:</label>
+                    {/* Em cada campo, é ligado ao estado via register */}
                     <input 
                         {...register('username')}
                         placeholder="Digite seu nome"
                     />
+                    {/* Se houver algum erro, será lançado uma mensagem de dado invalidado */}
                     {errors.username && <p className={css.erros}>{errors.username.message}</p>}
 
                     <label>Senha:</label>

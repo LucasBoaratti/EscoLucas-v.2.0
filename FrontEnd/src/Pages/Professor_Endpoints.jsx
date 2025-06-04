@@ -7,15 +7,15 @@ import { useNavigate } from "react-router-dom";
 export function Professor_Endpoints() {
     const navigate = useNavigate();
 
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState(''); //Criando um estado para armazenar o nome do professor
 
     function ObterNome() {
         try {
-            axios.get('http://127.0.0.1:8000/escolucas/login/');
+            axios.get('http://127.0.0.1:8000/escolucas/login/'); //Realizando uma requisição GET na API
 
-            setUsername(data.usuario.username); 
+            setUsername(data.usuario.username); //Armazenando o nome do professor no estado para ser exibido na tela
 
-            localStorage.setItem('username', data.usuario.username);
+            localStorage.setItem('username', data.usuario.username); //Salvando o nome do gestor
         }
         catch(error) {
             console.error("Erro ao obter nome.", error);
@@ -23,19 +23,20 @@ export function Professor_Endpoints() {
     }
 
     useEffect(() => {
-        const nome = localStorage.getItem('username');
+        const nome = localStorage.getItem('username'); //Buscando o nome do professor salvo no login
 
-        if (nome) {
-            setUsername(nome);
+        if (nome) { //Verificando se o nome está salvo no localStorage
+            setUsername(nome); 
         }
         else {
-            ObterNome();
+            ObterNome(); //Chamando a função para obter os dados do usuário
         }
     }, []);
 
     return (
         <main>
             <div className={css.container}>
+                {/* Exibindo o nome do professor */}
                 <h1>Bem vindo(a) à página de professores! o que você deseja fazer, {username}?</h1>
                 <div className={css.endpointsProfessor}>
                     <div className={css.buscarSala} onClick={() => navigate("/buscarSala")}>

@@ -1,4 +1,6 @@
-import { Routes, Route } from "react-router-dom";
+//Importando todas as páginas do projeto
+
+import { Routes, Route } from "react-router-dom"; //Routes: Define um grupo de rotas | Route: Define uma rota de uma página específica
 import { Index } from "../Pages/Index";
 import { Conteudo } from "../Components/Conteudo";
 import { Login } from "../Pages/Login";
@@ -20,9 +22,12 @@ import { Permissao } from "../Components/Permissao";
 export function Rotas() {
     return (
         <Routes>
-            <Route path="/" element={<Login/>}/>
+            {/* Essa é a rota principal que exibe o login na hora que o usuário abre o site  */}
+            <Route path="/" element={<Login/>}/> 
 
-            <Route path="/inicial" element={<Index/>}>
+            {/* A rota Index representa sub rotas do site */}
+            <Route path="/inicial" element={<Index/>}> 
+                {/* Aqui, a página home (Conteudo) é renderizada junto com a rota Index */}
                 <Route index element={<Conteudo/>}/>
             </Route>
 
@@ -31,11 +36,13 @@ export function Rotas() {
             </Route>
 
             <Route path="/gestor" element={<Index/>}>
+                {/* A rota Gestor_Endpoints é renderizada dentro da rota Permissão para que apenas gestores acessem a página de gestores */}
                 <Route index element={<Permissao>
                     <Gestor_Endpoints/>
                 </Permissao>}/>
             </Route>
-
+            
+            {/* O CRUD de professores, ambientes e disciplinas também são protegidos para que apenas os gestores possam ver, criar, atualizar e deletar os dados */}
             <Route path="/professorCRUD" element={<Index/>}>
                 <Route index element={<Permissao>
                     <ProfessorCRUD/>
@@ -89,7 +96,8 @@ export function Rotas() {
                     <EditarAmbiente/>
                 </Permissao>}/>
             </Route>
-
+            
+            {/* As rotas de busca, todos podem acessá-las */}
             <Route path="/buscarSala" element={<Index/>}>
                 <Route index element={<VerificarSala/>}/>
             </Route>

@@ -21,7 +21,7 @@ const schemaPUT = z.object({ //Realizando as regras de validação dos campos do
         .min(1, "Escolha uma data válida, por favor.")
         .refine((data) => { //Fazendo as validações de datas para garantir que a data de nascimento seja antes da data atual
             const dataAtual = new Date();
-            const dataDeNascimento = new Date(data);
+            const dataDeNascimento = new Date(data); 
             return dataDeNascimento < dataAtual;
         }, {
             message: "A data de nascimento deve ser antes da data atual!", //Caso haja algum erro na data...
@@ -31,7 +31,7 @@ const schemaPUT = z.object({ //Realizando as regras de validação dos campos do
     disciplina: z.string()
         .min(1, "Digite a discipina que você leciona.")
         .max(30, "O número de caracteres não pode ultrapassar 30 caracteres."),
-}).refine((data) => {
+}).refine((data) => { //Fazendo as validações de datas para garantir que a data de contratação seja depois da data de nascimento
         const nascimento = new Date(data.dataNascimento);
         const contratacao = new Date(data.dataContratacao);
         return contratacao >= nascimento;
@@ -41,23 +41,22 @@ const schemaPUT = z.object({ //Realizando as regras de validação dos campos do
 })
 
 export function EditarProfessor() {
-    const id = localStorage.getItem("id");
-
-    
     const {
         register, //Ligação dos inputs com o estado do componente
         handleSubmit, //Captura a submissão do formulário e valida os dados
         formState: { errors }, //Armazenando mensagens de erro com o errors
     } = useForm({
-        resolver: zodResolver(schemaPUT)
+        resolver: zodResolver(schemaPUT) //Integrando o Zod para aplicar as regras de validação
     })
+
+    const id = localStorage.getItem("id"); //Pegando o ID do usuário logado, salvo no login
 
     const navigate = useNavigate();
     
-    async function EditarProfessorPUT(data) {
-        const token = localStorage.getItem("access_token");
+    async function EditarProfessorPUT(data) { 
+        const token = localStorage.getItem("access_token"); //Pegando o token do usuário salvo no login
 
-        if (!token) {
+        if (!token) { //Verificando se o usuário não possui um token
             console.log("Token não encontrado.");
             return;
         }
@@ -65,15 +64,16 @@ export function EditarProfessor() {
         try {
             const dados = {
                 ...data,
-                ni: parseInt(data.ni),
+                ni: parseInt(data.ni), //Convertendo o número de identificação para inteiro
             }
-            const response = await axios.put(`http://127.0.0.1:8000/escolucas/professor/${id}/`, dados, { //Realizando uma requisição PUT para a API  
+            await axios.put(`http://127.0.0.1:8000/escolucas/professor/${id}/`, dados, { //Realizando uma requisição PUT para a API  
                 headers: {
-                    "Authorization": `Bearer ${token}`, "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}`, //Incluindo o token no cabeçalho
+                    "Content-type": "application/json",
                 },
             });
 
-            alert("Professor editado com sucesso!"); //Popup de sucesso
+            alert("Professor editado com sucesso!"); 
 
             navigate("/professorCRUD");
         }

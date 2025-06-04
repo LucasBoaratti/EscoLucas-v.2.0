@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import css from "./CriarAmbiente.module.css";
 
-const schemaPOST = z.object({
+const schemaPOST = z.object({ //Definindo regras de validação para os campos do formulário
     salaReservada: z.number()
         .positive(),
     dataInicio: z.string()
         .min(1, "Insira uma data válida, por favor.")
-        .refine((data) => {
+        .refine((data) => { //Fazendo as validações de datas para garantir que a data de início seja antes da data de término
             const dataReservaInicio = new Date();
             const dataReserva = new Date(data);
             return dataReserva > dataReservaInicio;
@@ -19,12 +19,12 @@ const schemaPOST = z.object({
         }),
     dataTermino: z.string()
         .min(1, "Insira uma data válida, por favor."), 
-    periodo: z.enum(["Manhã", "Tarde", "Noite"]),
+    periodo: z.enum(["Manhã", "Tarde", "Noite"]), //Validando o campo de escolha para garantir que o usuário escolha pelo menos uma opção
     professorRepresentante: z.number()
         .positive(),
     disciplinaAssociada: z.number()
         .positive(),
-}).refine((data) => {
+}).refine((data) => { //Fazendo as validações de datas para garantir que a data de término seja depois da data de início
     const dataInicio = new Date(data.dataInicio);
     const dataTermino = new Date(data.dataTermino);
     return dataTermino > dataInicio;
@@ -35,19 +35,19 @@ const schemaPOST = z.object({
 
 export function CriarAmbiente() {
     const {
-        register,
-        handleSubmit,
-        formState: { errors },
+        register, //Ligação dos inputs com o estado do componente
+        handleSubmit, //Captura a submissão do formulário e valida os dados
+        formState: { errors }, //Armazenando mensagens de erro com o errors
     } = useForm({
-        resolver: zodResolver(schemaPOST)
+        resolver: zodResolver(schemaPOST) //Integrando o Zod para aplicar as regras de validação
     })
 
     const navigate = useNavigate();
 
     async function CriarAmbientePOST(data) {
-        const token = localStorage.getItem("access_token");
+        const token = localStorage.getItem("access_token"); //Buscando o token armazenado no login do usuário
         
-        if(!token) {
+        if(!token) { //Caso o token não seja encontrado...
             console.log("Token não encontrado.");
             return;
         }
@@ -57,9 +57,9 @@ export function CriarAmbiente() {
                 ...data,
             }
 
-            const response = await axios.post("http://127.0.0.1:8000/escolucas/ambiente/", formatarDados, {
+            await axios.post("http://127.0.0.1:8000/escolucas/ambiente/", formatarDados, { //Realizando uma requisição POST na API
                 headers: {
-                    "Authorization": `Bearer ${token}`,
+                    "Authorization": `Bearer ${token}`, //Incluindo o token no cabeçalho
                     "Content-Type": "application/json",
                 }
             })
@@ -77,9 +77,13 @@ export function CriarAmbiente() {
         <main className={css.container}>
             <div className={css.formulario}>
                 <h1>Criar ambiente</h1>
+                {/* Aqui, o formulário usa o handleSubmit para validar os dados antes de enviá-los */}
                 <form className={css.dadosFormulario} onSubmit={handleSubmit(CriarAmbientePOST)}>
                     <label htmlFor="salaReservada">Sala reservada:</label> <br />
+                    {/* Em cada campo, é ligado ao estado via register */}
+                    {/* valueAsNumber verifica se o campo digitado pelo usuário é um número */}
                     <input type="number" name="salaReservada" id="salaReservada" {...register("salaReservada", { valueAsNumber: true })}/> <br />
+                    {/* Se houver algum erro, será lançado uma mensagem de dado invalidado */}
                     {errors.salaReservada && <p>{errors.salaReservada.message}</p>}
 
                     <label htmlFor="dataInicio">Data de início:</label> <br />
@@ -99,10 +103,12 @@ export function CriarAmbiente() {
                     {errors.periodo && <p>{errors.periodo.message}</p>}
 
                     <label htmlFor="professorRepresentante">Professor representante (ID):</label> <br />
+                    {/* valueAsNumber verifica se o campo digitado pelo usuário é um número */}
                     <input type="number" name="professorRepresentante" id="professorRepresentante" {...register("professorRepresentante", { valueAsNumber: true })}/> <br />
                     {errors.professorRepresentante && <p>{errors.professorRepresentante.message}</p>}
 
                     <label htmlFor="disciplinaAssociada">Disciplina associada (ID):</label> <br />
+                    {/* valueAsNumber verifica se o campo digitado pelo usuário é um número */}
                     <input type="number" name="disciplinaAssociada" id="disciplinaAssociada" {...register("disciplinaAssociada", { valueAsNumber: true })}/> <br />
                     {errors.disciplinaAssociada && <p>{errors.disciplinaAssociada.message}</p>}
 

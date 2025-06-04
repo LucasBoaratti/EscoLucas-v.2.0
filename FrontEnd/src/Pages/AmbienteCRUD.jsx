@@ -5,22 +5,22 @@ import axios from "axios";
 import { DeletarAmbienteModal } from "../Components/DeletarAmbienteModal";
 
 export function AmbienteCRUD() {
-    const [ambiente, setAmbiente] = useState([]);
-    const [deletarAmbiente, setDeletarAmbiente] = useState(false);
+    const [ambiente, setAmbiente] = useState([]); //Estado que armazena uma lista de ambientes obtida na API
+    const [deletarAmbiente, setDeletarAmbiente] = useState(false); //Estado que controla a exibição do modal
 
     const navigate = useNavigate();
 
-    const token = localStorage.getItem("access_token");
+    const token = localStorage.getItem("access_token"); //Pegando o token do usuário salvo no login
 
-    async function ObterAmbientes() {
+    async function ObterAmbientes() { 
         try {
-            const response = await axios.get("http://127.0.0.1:8000/escolucas/ambiente/", {
-                headers: {
-                    "Authorization": `Bearer ${token}`,
+            const response = await axios.get("http://127.0.0.1:8000/escolucas/ambiente/", { //Realizando uma requisição GET na API
+                headers: { 
+                    "Authorization": `Bearer ${token}`, //Incluindo o token no cabeçalho
                 }
             })
 
-            setAmbiente(response.data);
+            setAmbiente(response.data); //Armazenando os dados da disciplina para exibi-los na tabela
         }
         catch(error) {
             console.error("Erro ao obter ambiente: ", error);
@@ -28,12 +28,12 @@ export function AmbienteCRUD() {
     }
 
     useEffect(() => {
-        if(!token) {
+        if(!token) { //Verificando se o usuário possui um token
             console.log("Token não encontrado.");
             return;
         }
 
-        ObterAmbientes();
+        ObterAmbientes(); //A função é executada quando o componente for montado
     }, [])
 
     return (
@@ -63,6 +63,7 @@ export function AmbienteCRUD() {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* "Duplicando" os dados da lista de ambientes com o map() para exibir os dados dos ambientes */}
                     {ambiente.map(ambiente => (
                         <tr key={ambiente.id}>
                             <td>{ambiente.id}</td>
@@ -74,15 +75,16 @@ export function AmbienteCRUD() {
                             <td>{ambiente.disciplinaAssociada}</td>
                             <td>
                                 <i class="bi bi-pencil-square" style={{ cursor:"pointer" }} onClick={() => {
-                                    localStorage.setItem("id", ambiente.id);
+                                    localStorage.setItem("id", ambiente.id); //Incluindo o ID do ambiente na rota para a página de editar ambiente
                                     navigate("/editarAmbiente");
                                 }}>
                                 </i>
                                 <i class="bi bi-trash" style={{ cursor:"pointer"} } onClick={() => {
-                                    localStorage.setItem("id", ambiente.id);
-                                    setDeletarAmbiente(true);
+                                    localStorage.setItem("id", ambiente.id); //Incluindo o ID da disciplina na rota para a página de deletar disciplina
+                                    setDeletarAmbiente(true); //Aqui, é exibido o modal de exclusão se o setDeletarAmbiente for true
                                 }}>
                                 </i>
+                                {/* Depois de excluir uma disciplina, a função ObterAmbientes é chamada para atualizar a tabela */}
                                 <DeletarAmbienteModal openModal={deletarAmbiente} closeModal={() =>  
                                     setDeletarAmbiente(false)} 
                                     atualizarTabelaAmbiente={ObterAmbientes}

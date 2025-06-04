@@ -31,7 +31,7 @@ const schemaPOST = z.object({ //Definindo regras de validação para os campos d
     disciplina: z.string()
         .min(1, "Digite a discipina que você leciona.")
         .max(30, "O número de caracteres não pode ultrapassar 30 caracteres."),
-}).refine((data) => {
+}).refine((data) => { //Fazendo as validações de datas para garantir que a data de contratação seja depois da data de nascimento
     const nascimento = new Date(data.dataNascimento);
     const contratacao = new Date(data.dataContratacao);
     return contratacao >= nascimento;
@@ -46,14 +46,13 @@ export function CriarProfessor() {
         handleSubmit, //Captura a submissão do formulário e valida os dados
         formState: { errors } //Armazenando mensagens de erro com o errors
     } = useForm({
-        resolver: zodResolver(schemaPOST)
+        resolver: zodResolver(schemaPOST) //Integrando o Zod para aplicar as regras de validação
     })
 
     const navigate = useNavigate();
 
     async function CriarProfessorPOST(data) {
-        const token = localStorage.getItem('access_token'); //Pegando o token armazenado no local storage
-        console.log("Token: ", token) //Exibindo o token no console 
+        const token = localStorage.getItem('access_token'); //Buscando o token armazenado no login do usuário
 
         if (!token) { //Caso o token não seja encontrado...
             console.error("Token não encontrado.");
@@ -66,13 +65,12 @@ export function CriarProfessor() {
                 ni: parseInt(data.ni), //Convertendo o número de identificação para inteiro
             }
             
-            const response = await axios.post("http://127.0.0.1:8000/escolucas/professor/", dadosFormatados, { //Requisição POST para o BackEnd
+            await axios.post("http://127.0.0.1:8000/escolucas/professor/", dadosFormatados, { //Realizando uma requisição POST na API
                 headers: { //Incluindo o token no cabeçalho
-                    'Authorization': `Bearer ${token}`, "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`, 
+                    "Content-Type": "application/json",
                 },
             });
-
-            console.log("Dados do professor criado: ", response.data);
 
             alert("Professor criado com sucesso!"); //Adicionando um popup para avisar ao usuário que o professor foi criado
 

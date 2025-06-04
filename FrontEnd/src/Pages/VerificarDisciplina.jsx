@@ -4,23 +4,23 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export function VerificarDisciplina() {
-    const [buscarDisciplina, setBuscarNome] = useState([]);
+    const [buscarDisciplina, setBuscarNome] = useState([]); //Armazenando as disciplinas recuperadas na API
 
-    const nome = localStorage.getItem("nomeProfessor");
+    const nome = localStorage.getItem("nomeProfessor"); //Buscando o nome do professor salvo no login
 
     const navigate = useNavigate();
 
     async function BuscarDisciplina() {
-        const token = localStorage.getItem("access_token");
+        const token = localStorage.getItem("access_token"); //Pegando o token do usuário salvo no login
 
         try {
-            const response = await axios.get("http://127.0.0.1:8000/escolucas/disciplinaProfessor/", {
+            const response = await axios.get("http://127.0.0.1:8000/escolucas/disciplinaProfessor/", { //Realizando uma requisição GET na API
                 headers: {
-                    "Authorization": `Bearer ${token}`,
+                    "Authorization": `Bearer ${token}`, //Incluindo o token no cabeçalho
                 }
             })
 
-            setBuscarNome(response.data);
+            setBuscarNome(response.data); //Atualizando setBuscarNome com os resultados
         }
         catch(error) {
             console.error("Erro ao buscar o nome do professor: ");
@@ -48,6 +48,7 @@ export function VerificarDisciplina() {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* Se buscarDisciplina tiver resultados, será exibido cada disciplina do professor responsável */}
                     {buscarDisciplina.length > 0 ? (
                         buscarDisciplina.map((disciplina) => (
                             <tr key={disciplina.id}>
@@ -60,7 +61,9 @@ export function VerificarDisciplina() {
                             </tr>
                         ))
                     ) : (
-                        <tr>                                    
+                        <tr> 
+                            {/* Se não tiver nenhuma disciplina que o professor seja responsável, será exibido uma mensagem de aviso */}
+                            {/* colSpan: Define o quando de colunas o td irá ocupar */}                                   
                             <td colSpan="7">Nenhum ambiente reservado com seu nome.</td>
                         </tr>
                     )}  

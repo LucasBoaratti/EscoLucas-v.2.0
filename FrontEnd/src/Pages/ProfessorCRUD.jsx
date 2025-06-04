@@ -8,19 +8,18 @@ import { DeletarProfessorModal } from "../Components/DeletarProfessorModal"; //I
 export function ProfessorCRUD() {
     const [professor, setProfessor] = useState([]); //Estado que armazena uma lista de professores obtida na API
     const [deletarProfessor, setDeletarProfessor] = useState(false); //Estado que controla a exibição do modal
+
     const navigate = useNavigate();
 
-    const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem('access_token'); //Pegando o token do usuário salvo no login
 
     async function ObterDadosProfessor() {
         try {
             const response = await axios.get("http://127.0.0.1:8000/escolucas/professor/", { //Realizando uma requisição GET na API
                 headers: {
-                    'Authorization': `Bearer ${token}`, //Buscando o token e incluindo-o no cabeçalho   
+                    'Authorization': `Bearer ${token}`, //Incluindo o token no cabeçalho   
                 },
             });
-                
-            console.log("Dados dos professores: ", response.data);  
 
             localStorage.setItem("nomeProfessor", response.data[0].nome); //Salvando o nome do professor logado para usar em filtragens
 
@@ -31,8 +30,6 @@ export function ProfessorCRUD() {
             console.error("Erro ao encontrar professor: ", error);
         }
     }
-
-    console.log("Token: ", token)
 
     useEffect(() => {   
         if (!token) {
@@ -71,7 +68,7 @@ export function ProfessorCRUD() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* "Duplicando" a lista de professor com o map() para exibir os dados dos professores */}
+                    {/* "Duplicando" os dados da lista de professor com o map() para exibir os dados dos professores */}
                     {professor.map((professor) => (
                         <tr key={professor.id}>
                             <td>{professor.id}</td>
@@ -84,16 +81,15 @@ export function ProfessorCRUD() {
                             <td>{professor.disciplina}</td>
                             <td>
                                 <i class="bi bi-pencil-square" style={{cursor:"pointer"}} onClick={() => { 
-                                    localStorage.setItem("id", professor.id);
+                                    localStorage.setItem("id", professor.id); //Incluindo o ID do professor na rota para a página de editar professor
                                     navigate("/editarProfessor");
                                 }}>
                                 </i>
                                 <i class="bi bi-trash" style={{cursor:"pointer"}} onClick={() => {
-                                    localStorage.setItem("id", professor.id);
-                                    setDeletarProfessor(true);
+                                    localStorage.setItem("id", professor.id); //Incluindo o ID do professor na rota para a página de deletar professor 
+                                    setDeletarProfessor(true); // Aqui, é exibido o modal de exclusão se o setDeletarProfessor for true
                                 }}>
                                 </i>
-                                {/* Aqui, é exibido o modal de confirmação se o setDeletarProfessor for true */}
                                 {/* Depois de excluir um professor, a função ObterDadosProfessor é chamada para atualizar a tabela */}
                                 <DeletarProfessorModal openModal={deletarProfessor} closeModal={() => setDeletarProfessor(false)} 
                                 atualizarTabelaProfessores={ObterDadosProfessor}

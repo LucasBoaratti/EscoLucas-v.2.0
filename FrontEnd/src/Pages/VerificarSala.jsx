@@ -4,23 +4,23 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export function VerificarSala() {
-    const [buscarNome, setBuscarNome] = useState([]);
+    const [buscarAmbiente, setBuscarAmbiente] = useState([]); //Armazenando as disciplinas recuperadas na API
 
-    const nome = localStorage.getItem("nomeProfessor");
+    const nome = localStorage.getItem("nomeProfessor"); //Buscando o nome do professor salvo no login
 
     const navigate = useNavigate();
 
     async function BuscarSala() {
-        const token = localStorage.getItem("access_token");
+        const token = localStorage.getItem("access_token"); //Pegando o token do usuário salvo no login
 
         try {
-            const response = await axios.get("http://127.0.0.1:8000/escolucas/reservaSalaProfessor/", {
+            const response = await axios.get("http://127.0.0.1:8000/escolucas/reservaSalaProfessor/", { //Realizando uma requisição GET na API
                 headers: {
-                    "Authorization": `Bearer ${token}`,
+                    "Authorization": `Bearer ${token}`, //Incluindo o token no cabeçalho
                 }
             });
 
-            setBuscarNome(response.data);
+            setBuscarAmbiente(response.data); //Atualizando setBuscarNome com os resultados
         }
 
         catch(error) {
@@ -50,8 +50,9 @@ export function VerificarSala() {
                     </tr>
                 </thead>
                 <tbody>
-                    {buscarNome.length > 0 ? (
-                        buscarNome.map((ambiente) => (
+                    {/* Se buscarAmbiente tiver resultados, será exibido cada ambiente reservado do professor responsável */}
+                    {buscarAmbiente.length > 0 ? (
+                        buscarAmbiente.map((ambiente) => (
                             <tr key={ambiente.id}>
                                 <td>{ambiente.id}</td>
                                 <td>{ambiente.salaReservada}</td>
@@ -64,6 +65,8 @@ export function VerificarSala() {
                         ))
                     ) : (
                         <tr>
+                            {/* Se não tiver nenhum ambiente que o professor seja responsável, será exibido uma mensagem de aviso */}
+                            {/* colSpan: Define o quando de colunas o td irá ocupar */}
                             <td colSpan="7">Nenhum ambiente reservado com seu nome.</td>
                         </tr>
                     )}  
