@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 
-export function Permissao({ children }) { //children representa o conteúdo da rota protegida
+export function PermissaoGestor({ children }) { //children representa o conteúdo da rota protegida
     const funcao = localStorage.getItem("função"); //Buscando a função do usuário salvada no login
 
     if(funcao !== "Gestor") { //Verificando se o usuário logado não é gestor

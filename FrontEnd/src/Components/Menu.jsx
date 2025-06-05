@@ -32,7 +32,7 @@ export function Menu() {
                         <p>"Estudar aqui me deu conhecimento para alcançar meus sonhos. - Ex-Aluna, Fernanda.</p>
                     </div>
                     <div className={css.marcia}>
-                        <p>"A escola me ensinou muito mais do que matérias, me ensinou valores para a vida. - Márcia, professora</p>
+                        <p>"A escola me ensinou muito mais do que matérias, me ensinou valores para a vida. - Márcia, professora.</p>
                         <img src={Marcia} alt="Foto genérica da Márcia com o seu nome logo abaixo." />
                     </div>
                 </div>

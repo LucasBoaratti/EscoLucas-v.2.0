@@ -17,7 +17,8 @@ import { CriarAmbiente } from "../Pages/CriarAmbiente";
 import { EditarAmbiente } from "../Pages/EditarAmbiente";
 import { VerificarSala } from "../Pages/VerificarSala";
 import { VerificarDisciplina } from "../Pages/VerificarDisciplina";
-import { Permissao } from "../Components/Permissao";
+import { PermissaoGestor } from "../Components/PermissaoGestor";
+import { PermissaoProfessor } from "../Components/PermissaoProfessor";
 
 export function Rotas() {
     return (
@@ -32,69 +33,71 @@ export function Rotas() {
             </Route>
 
             <Route path="/professor" element={<Index/>}>
-                <Route index element={<Professor_Endpoints/>}/>
+                <Route index element={<PermissaoProfessor>
+                    <Professor_Endpoints/>
+                </PermissaoProfessor>}/>
             </Route>
 
             <Route path="/gestor" element={<Index/>}>
                 {/* A rota Gestor_Endpoints é renderizada dentro da rota Permissão para que apenas gestores acessem a página de gestores */}
-                <Route index element={<Permissao>
+                <Route index element={<PermissaoGestor>
                     <Gestor_Endpoints/>
-                </Permissao>}/>
+                </PermissaoGestor>}/>
             </Route>
             
             {/* O CRUD de professores, ambientes e disciplinas também são protegidos para que apenas os gestores possam ver, criar, atualizar e deletar os dados */}
             <Route path="/professorCRUD" element={<Index/>}>
-                <Route index element={<Permissao>
+                <Route index element={<PermissaoGestor>
                     <ProfessorCRUD/>
-                </Permissao>}/>
+                </PermissaoGestor>}/>
             </Route>
 
             <Route path="/criarProfessor" element={<Index/>}>
-                <Route index element={<Permissao>
+                <Route index element={<PermissaoGestor>
                     <CriarProfessor/>
-                </Permissao>}/>
+                </PermissaoGestor>}/>
             </Route>
 
             <Route path="/editarProfessor" element={<Index/>}>
-                <Route index element={<Permissao>
+                <Route index element={<PermissaoGestor>
                     <EditarProfessor/>
-                </Permissao>}/>
+                </PermissaoGestor>}/>
             </Route>
 
             <Route path="/disciplinaCRUD" element={<Index/>}>
-                <Route index element={<Permissao>
+                <Route index element={<PermissaoGestor>
                     <DisciplinaCRUD/>
-                </Permissao>}/>
+                </PermissaoGestor>}/>
             </Route>
 
             <Route path="/criarDisciplina" element={<Index/>}>
-                <Route index element={<Permissao>
+                <Route index element={<PermissaoGestor>
                     <CriarDisciplina/>
-                </Permissao>}/>
+                </PermissaoGestor>}/>
             </Route>
 
             <Route path="/editarDisciplina" element={<Index/>}>
-                <Route index element={<Permissao>
+                <Route index element={<PermissaoGestor>
                     <EditarDisciplina/>
-                </Permissao>}/>
+                </PermissaoGestor>}/>
             </Route>
 
             <Route path="/ambienteCRUD" element={<Index/>}>
-                <Route index element={<Permissao>
+                <Route index element={<PermissaoGestor>
                     <AmbienteCRUD/>
-                </Permissao>}/>
+                </PermissaoGestor>}/>
             </Route>
 
             <Route path="/criarAmbiente" element={<Index/>}>
-                <Route index element={<Permissao>
+                <Route index element={<PermissaoGestor>
                     <CriarAmbiente/>
-                </Permissao>}/>
+                </PermissaoGestor>}/>
             </Route>
 
             <Route path="/editarAmbiente" element={<Index/>}>
-                <Route index element={<Permissao>
+                <Route index element={<PermissaoGestor>
                     <EditarAmbiente/>
-                </Permissao>}/>
+                </PermissaoGestor>}/>
             </Route>
             
             {/* As rotas de busca, todos podem acessá-las */}
