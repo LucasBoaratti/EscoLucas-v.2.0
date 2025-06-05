@@ -97,8 +97,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', #Definindo qual banco de dados será usado para guardar os dados na tabela
         'NAME': 'escolucas', #Nome do database
-        'USER': 'root', #Usuário do banco de dados mysql
-        'PASSWORD': 'lucas', #Senha do banco de dados mysql
+        'USER': '', #Usuário do banco de dados mysql
+        'PASSWORD': '', #Senha do banco de dados mysql
         'HOST': 'localhost', #Servidor do banco de dados 
         'PORT': '3306', #Porta onde está rodando o servidor do banco de dados
     }
